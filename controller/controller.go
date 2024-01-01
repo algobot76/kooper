@@ -158,7 +158,7 @@ func New(cfg *Config) (Controller, error) {
 	// store is the internal cache where objects will be store.
 	store := cache.Indexers{}
 	lw := listerWatcherFromRetriever(cfg.Retriever)
-	informer := cache.NewSharedIndexInformer(lw, nil, cfg.ResyncInterval, store)
+	informer := cache.NewSharedIndexInformer(lw, nil, cfg.ResyncInterval, store) // (ab76) can simply usg cache.NewSharedInformer
 
 	// Set up our informer event handler.
 	// Objects are already in our local store. Add only keys/jobs on the queue so they can re processed
